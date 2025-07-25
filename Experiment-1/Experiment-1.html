@@ -5,13 +5,14 @@
   <h1>Student Registration Form</h1>
   <form>
     <label>Name:</label>
-    <input type="text" placeholder="Enter your full name" required><br><br>
+    <input type="text" placeholder="Enter your full name" required minlength="3" maxlength="30" 
+    pattern="[A-Za-z\s]+" title="Only letters and spaces allowed"><br><br>
     
     <label>Email:</label>
-    <input type="email" placeholder="Enter your email" required><br><br>
+    <input type="email" placeholder="Enter your email" name="email" required><br><br>
     
     <label>Age:</label>
-    <input type="number" placeholder="Enter" min="1" required><br><br>
+    <input type="number" placeholder="Enter" required min="1" max="99"><br><br>
     
     <button type="submit">Register</button>
   </form>
