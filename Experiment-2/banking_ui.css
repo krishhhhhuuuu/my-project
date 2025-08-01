@@ -14,8 +14,6 @@ body {
   align-items: center;
   padding: 20px;
 }
-
-/* UI Card */
 .inner {
   background-color: #ffffff;
   padding: 30px;
@@ -28,15 +26,11 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
-/* Balance Display */
 .balance {
   color: green;
   font-size: 2rem;
   margin-bottom: 20px;
 }
-
-/* Button Styles */
 button {
   width: 100%;
   padding: 12px;
