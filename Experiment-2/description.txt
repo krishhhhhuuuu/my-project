@@ -11,12 +11,17 @@ Description:
 -> The interface includes a balance display along with Deposit and Withdraw buttons, all styled for clarity and usability.
 -> Using Flexbox, the design adapts smoothly to all screen sizes, ensuring a consistent experience on both desktop and mobile.
 -> The HTML file is linked to an external CSS file using the <link> tag to separate structure from styling and ensure clean, maintainable code.
+-> Div elements are used to group and organize interface components.
+-> Padding adds space inside elements, enhancing readability and layout flow.
+-> Margin creates space outside elements, preventing overlap and maintaining visual balance.
+-> Borders define element boundaries and improve separation between UI sections.
 
 Scenarios:
 1. Layout: The design adapts smoothly on both desktop and mobile screens using Flexbox.
 2. Card Container: All elements (balance and buttons) are neatly organized inside a centered card layout.
 3. Button Styling: Deposit and Withdraw buttons are wide, clearly colored, and easy to use.
 4. Balance Display: The balance is clearly visible in green with a large, readable font.
+5. Limitations or scope: No interactivity was added, as the focus was on layout and styling.
 
 Learning Outcomes:
 -> Understand how to center content using Flexbox.
