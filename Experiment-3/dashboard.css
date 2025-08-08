@@ -1,3 +1,4 @@
+/* Default Theme Variables */
 :root {
   --bg: #fff;
   --text: #000;
@@ -6,6 +7,16 @@
   --link: purple;
 }
 
+/* Dark Mode Variables */
+#theme-toggle:checked ~ .dashboard {
+  --bg: #111;
+  --text: #fff;
+  --header-footer: #222;
+  --sidebar: #333;
+  --link: lightblue;
+}
+
+/* Global Styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -13,7 +24,7 @@ body {
   color: var(--text);
 }
 
-/* Grid Layout */
+/* Layout Grid */
 .dashboard {
   display: grid;
   grid-template: 60px 1fr auto / 200px 1fr;
@@ -22,18 +33,21 @@ body {
     "sidebar main"
     "footer footer";
   height: 100vh;
-  border: 1px solid #000;
+  background: var(--bg); /* ✅ Ensures full background changes */
 }
 
-/* Header */
-.header {
-  grid-area: header;
+/* Header & Footer */
+.header, .footer {
   background: var(--header-footer);
   color: #fff;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.footer {
+  text-align: center;
 }
 
 /* Sidebar */
@@ -48,26 +62,13 @@ body {
   text-decoration: underline;
 }
 
-/* Main Content */
+/* Main */
 .main {
   grid-area: main;
   padding: 1rem;
+  background: var(--bg); /* ✅ Now changes with theme */
 }
 
-/* Footer */
-.footer {
-  grid-area: footer;
-  background: var(--header-footer);
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
-}
-
-/* Dark Mode Variables */
-.dark-mode {
-  --bg: #111;
-  --text: #fff;
-  --header-footer: #222;
-  --sidebar: #333;
-  --link: lightblue;
-}
+/* Areas */
+.header { grid-area: header; }
+.footer { grid-area: footer; }
