@@ -1,0 +1,92 @@
+ADMIN DASHBOARD - DARK MODE TOGGLE EXPERIMENT
+
+1. OBJECTIVE:
+   To design and implement an admin dashboard layout using HTML and CSS Grid, with a theme toggle functionality
+   that switches between light mode and dark mode using CSS variables and a hidden checkbox.
+
+2. FUNCTIONALITY DESCRIPTION:
+   - Default Theme Variables:
+     The :root selector defines CSS variables for background color, text color, header/footer color, sidebar color, and link color.
+     These variables are used across the layout to maintain consistent styling.
+
+   - Dark Mode Variables:
+     When the #theme-toggle checkbox is checked, new variable values are applied to .dashboard using the sibling selector (~).
+     This changes background, text, and element colors to a dark mode palette.
+
+   - Layout Grid:
+     The dashboard uses CSS Grid with three main areas:
+       * Header (top)
+       * Sidebar (left)
+       * Main content (right)
+       * Footer (bottom)
+     The grid-template-areas property defines the layout structure.
+
+   - Header & Footer:
+     Both are styled with a background color (from variables), white text, and flexbox for spacing and alignment.
+     The header contains the dashboard title and a label that toggles the dark mode.
+
+   - Sidebar:
+     Placed on the left, styled with a background from the sidebar variable.
+     Contains a list of navigation links styled with the link variable.
+
+   - Main Content:
+     Displays a welcome message and placeholder text for admin content such as charts, tables, or reports.
+
+3. HTML STRUCTURE:
+   - Hidden checkbox (#theme-toggle) for toggling themes.
+   - .dashboard container holding:
+       * <header> with title and dark mode toggle label.
+       * <nav> sidebar with navigation menu.
+       * <main> for content display.
+       * <footer> for copyright.
+
+4. SCENARIO:
+   Imagine an organization where administrators need to monitor users, settings, and analytics from a single interface.
+   During day hours, the light theme is preferred for better visibility in bright environments.
+   At night or in low-light conditions, the dark theme reduces eye strain.
+   The theme toggle feature allows quick switching without reloading the page.
+   This dashboard can be extended with charts, logs, and interactive data panels while keeping the theme consistent.
+
+5. LEARNING OUTCOMES:
+   1. How to use CSS variables for theming.
+   2. How to implement light/dark mode toggles using a hidden checkbox and sibling selectors.
+   3. How to create a responsive admin layout using CSS Grid.
+   4. How to style components consistently using global variables.
+
+6. TEST CASES:
+   - Default load shows light theme.
+   - Checking the toggle changes to dark theme.
+   - Links change color according to theme.
+   - Background and text colors update across all sections consistently.
+
+---
+
+Title:
+Admin Dashboard with CSS Grid Layout and Theme Switching
+
+Objective:
+To design and implement a responsive, professional admin dashboard using HTML and CSS Grid, enhanced with a theme switching feature that allows users to toggle between light and dark modes seamlessly. The project emphasizes advanced layout design, responsive structuring, and adaptable theming without page reloads.
+
+Description:
+This experiment involves creating a modern, web-based admin dashboard that is both visually appealing and functional. The layout is structured using CSS Grid, dividing the page into four key sections:
+
+- Header – Positioned at the top, it includes the dashboard title and a theme switch control for toggling between light and dark modes.
+- Sidebar – A vertical navigation panel on the left containing links such as Home, Users, and Settings.
+- Main Content Area – The central workspace for admin activities, such as displaying charts, reports, or a welcome message.
+- Footer – Located at the bottom, displaying footer information such as © notices.
+
+The theme switching functionality is implemented using CSS variables and a hidden checkbox toggle. When the switch is activated, global color variables for background, text, links, sidebar, and header/footer are updated instantly, creating a smooth transition between light and dark modes without requiring a page reload.
+
+The light theme uses a bright background, dark text, and vibrant link colors for maximum clarity, while the dark theme offers reduced brightness and higher contrast for comfortable viewing in low-light conditions.
+
+Learning Outcomes:
+- Mastery of CSS Grid for building responsive, multi-section layouts.
+- Application of CSS variables for centralized and consistent theme styling.
+- Implementation of light/dark mode switching using pure HTML and CSS (no JavaScript).
+- Improved understanding of accessible and user-friendly dashboard design principles.
+
+Test Scenarios:
+- On page load, the light theme is active by default.
+- Toggling the theme switch updates colors across the entire dashboard.
+- Switching back restores the original light theme instantly.
+- All sections (header, sidebar, main content, footer) adapt consistently to the active theme.
