@@ -5,10 +5,13 @@
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="dashboard.css" />
 </head>
-<body>
+<body class="light-mode">
   <div class="dashboard">
     <header class="header">
       <span>Admin Dashboard</span>
+      <label>
+        <input type="checkbox" id="theme-toggle"> Dark Mode
+      </label>
     </header>
     <nav class="sidebar">
       <ul>
@@ -23,5 +26,15 @@
     </main>
     <footer class="footer">&copy; 2025 Admin Panel</footer>
   </div>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    toggle.addEventListener('change', () => {
+      body.classList.toggle('dark-mode');
+      body.classList.toggle('light-mode');
+    });
+  </script>
 </body>
 </html>
