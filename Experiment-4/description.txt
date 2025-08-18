@@ -1,0 +1,33 @@
+This project creates a basic live Character Counter using HTML and JavaScript.  
+It includes an event listener that tracks the count of characters typed inside the textarea (spaces are also included).
+
+HTML (BASIC STRUCTURE OF THE WEBPAGE):  
+There are three main tags in the HTML code: <h2>, <textarea>, and <script>.
+
+1. <h2> tag  
+Displays the heading "Live Character Counter" at the top of the page.
+
+2. <textarea> tag  
+The <textarea> tag has an id "textInput" and a placeholder "Start typing...".  
+It allows users to type text, and the character count updates as they type.
+
+3. <p> tag  
+Displays the label "Characters:" followed by a <span> with id "charCount" that shows the live count.
+
+4. <script> tag  
+The <script> tag contains JavaScript code that enables the live counter functionality.  
+It uses getElementById to access the textarea and span elements.  
+An event listener is added to the textarea that listens for "input" events.  
+Each time the user types, the function updates the character count using .value.length.
+
+JavaScript FUNCTIONALITY:  
+- let textInput = document.getElementById("textInput");
+- let charCount = document.getElementById("charCount");  
+- textInput.addEventListener("input", function() { charCount.textContent = textInput.value.length; });  
+This function runs every time the user types in the textarea and updates the character count in real-time.
+
+Learning Outcomes:  
+1. Learnt how to access HTML elements using JavaScript  
+2. Understood how to use event listeners for real-time updates  
+3. Practiced integrating JavaScript with HTML for interactive features  
+4. Gained experience in basic webpage structure and DOM manipulation
