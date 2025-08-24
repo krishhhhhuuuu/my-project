@@ -1,0 +1,26 @@
+
+HTML (Structure):
+
+HTML is used to create the structure of the webpage. In this project, HTML is used to make:
+A heading for the product list.
+A dropdown menu where the user can select a category (All, Clothing, Electronics, Books).
+A list of products, each product has a category assigned to it.
+HTML is only responsible for showing the content on the page.
+
+CSS (Styling):
+
+CSS is used to make the webpage look good. In this project, CSS is used to:
+Set background color and font style of the page.
+Add borders, padding, and spacing to the product box.
+Style the dropdown menu and labels.
+Give each product a neat box design with border, padding, margin, and rounded corners.
+CSS is only responsible for the design and appearance.
+
+JavaScript (Functionality):
+
+JavaScript is used to add interactivity. In this project, JavaScript:
+Reads the dropdown menu selection.
+Checks each product’s category.
+If the product matches the selected category, it is shown; otherwise, it is hidden.
+If "All" is selected, then all products are displayed.
+JavaScript is responsible for behavior and making the filter work.
