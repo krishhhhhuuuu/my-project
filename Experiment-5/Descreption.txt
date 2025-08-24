@@ -1,3 +1,5 @@
+This project creates a Dynamic Product Filter using **HTML, CSS, and JavaScript**. 
+It has a dropdown menu that lets users choose a category, and the product list updates instantly based on the selected option without reloading the page.
 
 HTML (Structure):
 
@@ -24,3 +26,10 @@ Checks each product’s category.
 If the product matches the selected category, it is shown; otherwise, it is hidden.
 If "All" is selected, then all products are displayed.
 JavaScript is responsible for behavior and making the filter work.
+
+Key Highlights:
+
+* Live filtering with instant updates.
+* Event-driven interaction using a change listener.
+* Scalable design that allows adding more categories or products easily.
+* Clear separation: HTML for structure, CSS for design, JavaScript for logic.
