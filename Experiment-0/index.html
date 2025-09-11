@@ -1,23 +1,92 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HTML + CSS + JS</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Rough 3D House Model</title>
+    <style>
+      body { margin: 0; overflow: hidden; }
+      canvas { display: block; }
+      #info {
+        position: absolute; top: 10px; left: 10px;
+        background: rgba(0,0,0,0.6); color: white;
+        padding: 8px 12px; border-radius: 6px; font-family: sans-serif;
+      }
+    </style>
   </head>
   <body>
-    <div id="root">
-      <div>
-        <img src="/images/html.svg" class="logo"/>
-        <img src="/images/css.svg" class="logo"/>
-        <img src="/images/javascript.svg" class="logo"/>
-      </div>
-    <h1>HTML + CSS + JavaScript</h1>
-    <p class="read-instructions" style="display: none;">
-      Change HTML/ CSS/ JS code and hit refresh the URL to see the changes.
-    </p>
-  </div>
-  <script src="script.js"></script>
+    <div id="info">Drag = Rotate • Right Drag = Pan • Scroll = Zoom</div>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/controls/OrbitControls.js"></script>
+    <script>
+      // Scene setup
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xf0f0f0);
+
+      const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(60, 60, 80);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+      // Lights
+      const light = new THREE.DirectionalLight(0xffffff, 1);
+      light.position.set(50, 80, 50);
+      scene.add(light);
+      scene.add(new THREE.AmbientLight(0x404040));
+
+      // Ground plane
+      const groundGeo = new THREE.PlaneGeometry(120, 120);
+      const groundMat = new THREE.MeshPhongMaterial({ color: 0xe6e6e6, depthWrite: false });
+      const ground = new THREE.Mesh(groundGeo, groundMat);
+      ground.rotation.x = -Math.PI / 2;
+      scene.add(ground);
+
+      // Helper grid
+      const grid = new THREE.GridHelper(120, 60, 0x000000, 0xaaaaaa);
+      scene.add(grid);
+
+      // --- House Rough Layout ---
+      const wallMat = new THREE.MeshPhongMaterial({ color: 0xd9d9d9 });
+      const floorMat = new THREE.MeshPhongMaterial({ color: 0xadd8e6, transparent: true, opacity: 0.7 });
+
+      function addRoom(name, w, d, x, z) {
+        const floor = new THREE.Mesh(new THREE.BoxGeometry(w, 0.2, d), floorMat);
+        floor.position.set(x, 0.1, z);
+        scene.add(floor);
+
+        const edges = new THREE.LineSegments(
+          new THREE.EdgesGeometry(new THREE.BoxGeometry(w, 0.2, d)),
+          new THREE.LineBasicMaterial({ color: 0x333333 })
+        );
+        edges.position.set(x, 0.1, z);
+        scene.add(edges);
+      }
+
+      // Example rooms (you can add more with measurements)
+      addRoom("Porch/Carport", 10, 18, -15, -34);
+      addRoom("Front Lawn", 20, 22, 10, -36);
+      addRoom("Master Bed", 12, 18, 14, -10);
+      addRoom("Family Lounge", 20, 26, 0, 10);
+      addRoom("Kitchen", 11, 10, 13, 30);
+      addRoom("Rear Verandah", 18, 10, 0, 39);
+
+      // Animate
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Resize handling
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
   </body>
-</html> 
+</html>
