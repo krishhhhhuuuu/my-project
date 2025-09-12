@@ -1,5 +1,3 @@
-import React from "react";
-
 function ProductCard({ name, price, status }) {
   return (
     <div style={styles.card}>
