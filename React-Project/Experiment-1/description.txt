@@ -1,0 +1,57 @@
+Experiment Description
+
+In this experiment, I developed a small React project to demonstrate the use of components and props, which are the building blocks of React applications. The project was structured with only two main files inside the `src` folder:
+
+1. App.jsx – the parent component that manages data and renders the child component.
+2. ProductCard.jsx – the reusable child component that receives data via props and displays it.
+
+-> Working of `App.jsx`
+
+The `App.jsx` file serves as the main entry point of the application’s logic.
+
+* It begins by importing React and the `ProductCard` component.
+* A product list is created using an array of objects, where each object contains details such as the product name, price, and availability status.
+* Instead of hardcoding multiple product cards, the `map()` function is used to iterate through the array and render a `ProductCard` for each product.
+* The details are passed down to the child component using props (`name`, `price`, `status`).
+* This ensures that the layout is dynamic and scalable – new products can be displayed by simply adding them to the array.
+
+-> Main concepts used:
+
+* Importing components.
+* Functional component structure.
+* Array iteration with `map()`.
+* Passing props from parent to child.
+* Using `key` attribute for unique rendering in lists.
+
+-> Working of `ProductCard.jsx`
+
+The `ProductCard.jsx` file defines the **reusable component** that receives data from `App.jsx` and displays it.
+
+* It accepts `name`, `price`, and `status` as **props** from the parent.
+* Through "destructuring of props", values are directly extracted, making the code cleaner and easier to read.
+* JSX is then used to display these values inside a simple card layout.
+* Styling is applied using inline styles, giving each product card a neat and consistent design.
+
+->Main concepts used
+
+* Functional component creation.
+* Props and props destructuring.
+* JSX for rendering dynamic values.
+* Inline CSS styling with JavaScript objects.
+* Component reusability.
+
+-> Outcome of the Experiment
+
+* Successfully implemented a parent-child relationship in React using props.
+* Demonstrated reusability of components by rendering multiple product cards from a single `ProductCard` component.
+* Understood how React separates data handling (App.jsx) and UI presentation (ProductCard.jsx).
+* Practiced essential React concepts like **props, destructuring, JSX, map(), and inline styling.
+
+-> Conclusion
+
+This experiment clearly shows how React promotes a modular and reusable component-based architecture.
+
+* The parent (`App.jsx`) is responsible for holding and managing data.
+* The child (`ProductCard.jsx`) is responsible only for displaying the data it receives.
+
+By combining both, we created a dynamic product listing application with minimal code. This experiment strengthened the understanding of "props, reusability, and dynamic rendering in React", which are fundamental concepts for building scalable front-end applications.
