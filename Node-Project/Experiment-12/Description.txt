@@ -1,0 +1,38 @@
+Experiment 12 – Seat Booking Lock API (Express)
+
+Overview
+Express server that simulates seat booking with a lock-and-confirm flow. Seats can be locked for a short time window and then confirmed to book. State is kept in memory.
+
+How to Run
+1) Open a terminal in this folder.
+2) Install dependencies:
+   npm install
+3) Start the server:
+   npm start
+4) The API listens on http://localhost:3000
+
+Key Behavior
+- A lock lasts for 60 seconds. If not confirmed within that time, the lock expires and the seat becomes available again.
+
+Endpoints
+- GET /seats
+  Returns the current status of all seats: available | locked | booked.
+
+- POST /lock/:seatId
+  Locks the seat if available. Fails if already booked or currently locked by another user.
+
+- POST /confirm/:seatId
+  Confirms a previously locked seat (must be within the lock window). Books the seat on success.
+
+Example Requests (curl)
+# view all seats
+curl http://localhost:3000/seats
+
+# lock seat 1
+curl -X POST http://localhost:3000/lock/1
+
+# confirm seat 1 (within 60 seconds)
+curl -X POST http://localhost:3000/confirm/1
+
+Notes
+- This demo uses in-memory data and resets on server restart.

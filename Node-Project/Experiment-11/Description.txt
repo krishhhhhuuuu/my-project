@@ -1,0 +1,45 @@
+Experiment 11 – Cards API (Express)
+
+Overview
+Simple REST API built with Express that manages an in-memory collection of playing cards. Demonstrates basic CRUD operations without a database.
+
+How to Run
+1) Open a terminal in this folder.
+2) Install dependencies:
+   npm install
+3) Start the server:
+   node server.js
+4) The API listens on http://localhost:3000
+
+Endpoints
+- GET /cards
+  Returns the full list of cards.
+
+- GET /cards/:id
+  Returns a single card by numeric id. 404 if not found.
+
+- POST /cards
+  Creates a new card. Body must be JSON:
+  { "suit": "Hearts", "value": "Ace" }
+  Responds with the created card and id.
+
+- DELETE /cards/:id
+  Removes a card by id. Returns the removed card or 404 if not found.
+
+Example Requests (curl)
+# list all cards
+curl http://localhost:3000/cards
+
+# get card with id 1
+curl http://localhost:3000/cards/1
+
+# create a card
+curl -X POST http://localhost:3000/cards \
+  -H "Content-Type: application/json" \
+  -d '{"suit":"Clubs","value":"10"}'
+
+# delete a card
+curl -X DELETE http://localhost:3000/cards/2
+
+Notes
+- Data is stored in memory and resets on server restart.
