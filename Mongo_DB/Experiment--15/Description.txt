@@ -1,0 +1,73 @@
+Experiment 15: CRUD Operations for Product Database Using Mongoose**
+
+Objective:
+
+The objective of this experiment is to implement "Create, Read, Update, and Delete (CRUD) operations" on a MongoDB collection using **Mongoose** in a Node.js application. This helps in understanding **schema design**, **database connectivity**, and structured data handling in real-world applications.
+
+## Technologies Used
+
+* Node.js & Express.js – Backend runtime and framework for REST API.
+* MongoDB – NoSQL database for flexible, document-oriented data storage.
+* Mongoose – ODM library for schema definition and database interaction.
+* JavaScript (ES6+) – Application logic and asynchronous operations.
+##Project Overview
+
+In this experiment, a "Node.js REST API" is developed to manage a Product Database. Each product contains key attributes such as:
+
+* name – Name of the product
+* price – Product price
+* category* – Product category
+
+The project demonstrates:
+
+* Schema definition using Mongoose for data validation and structure.
+* CRUD operations including:
+
+  * Adding a new product
+  * Retrieving all products
+  * Updating a product by its ID
+  * Deleting a product by its ID
+* Error handling and data validations to ensure database integrity.
+
+## **Project Structure (MVC)**
+
+```
+Experiment-15/
+├── server.js                   # Main server entry point
+├── models/
+│   └── Product.js              # Mongoose schema for Product
+├── controllers/
+│   └── productController.js    # Handles CRUD logic
+├── routes/
+│   └── productRoutes.js        # Defines API endpoints
+├── package.json
+```
+
+* Models: Define the structure of the Product document.
+* Controllers: Contain functions that interact with the database.
+* Routes: Map HTTP requests to controller functions.
+* Server: Initializes Express, connects to MongoDB, and sets up routing.
+
+## Expected Output
+
+* Ability to **add new products** and see them stored in MongoDB.
+* Retrieve all products using GET requests.
+* Update product details by ID.
+* Delete products by ID.
+* All operations are testable via **Postman** and verifiable in **MongoDB Compass**.
+
+## Key Features:
+
+* Nested Documents: Products contain multiple variants stored as arrays in a single document.
+* CRUD Operations: Create, Read, Update, Delete products and their variants.
+* Advanced Queries: Filter products based on nested variant properties using $elemMatch.
+* REST API: Fully functional endpoints for product management.
+* MVC Architecture: Clean separation of concerns (models, controllers, routes, server).
+
+## Learning Outcomes
+
+* Gained practical experience with **Node.js, Express, and MongoDB**.
+* Learned to design and use *Mongoose schemas* for structured data storage.
+* Implemented full *CRUD functionality* in a RESTful API.
+* Practiced *MVC architecture* to organize backend code.
+* Learned proper *error handling* and validation in database operations.
