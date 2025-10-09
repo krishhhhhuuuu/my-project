@@ -1,0 +1,108 @@
+Experiment-16: Middleware Implementation for Logging and Bearer Token Authentication
+
+Title
+
+**Middleware Implementation for Logging and Bearer Token Authentication in Express.js
+
+
+## Objective
+
+To design and implement middleware functions in an **Express.js** application that:
+
+1. Log details of each incoming HTTP request (method, URL, and timestamp).
+2. Authenticate users using a **Bearer token** to protect specific routes.
+
+
+## Theory
+
+In Express.js, **middleware** refers to functions that have access to the request (`req`), response (`res`), and the next middleware function (`next`) in the application’s request-response cycle. Middleware functions can execute code, modify the request and response objects, end the request-response cycle, or call `next()` to pass control to another middleware.
+
+### Types of Middleware
+
+1. **Application-level Middleware** – Bound to the app using `app.use()`; used for global tasks like logging or authentication.
+2. **Router-level Middleware** – Applied to specific route handlers using an Express Router.
+3. **Built-in Middleware** – Provided by Express (e.g., `express.json()`, `express.urlencoded()` for parsing).
+4. **Third-party Middleware** – Installed from npm (e.g., `morgan` for logging, `cors` for CORS support).
+5. **Error-handling Middleware** – Defined with four parameters `(err, req, res, next)` to manage errors centrally.
+
+### Concept:
+In this experiment:
+
+* A **logging middleware** records request data for monitoring.
+* An **authentication middleware** validates Bearer tokens to control access to protected routes.
+
+
+## Requirements
+
+* Node.js (LTS version)
+* Visual Studio Code
+* Postman (for testing APIs)
+* npm (Node Package Manager)
+
+
+## echnologies Used
+
+| Technology           | Purpose                                         |
+| -------------------- | ----------------------------------------------- |
+|   Node.js            | Server-side JavaScript runtime                  |
+|   Express.js         | Web framework for Node.js                       |
+|   Morgan             | Third-party middleware for HTTP request logging |
+|   Postman            | API testing tool                                |
+
+
+## Folder Structure
+
+Experiment-16/
+│
+├── node_modules/
+├── package.json
+├── package-lock.json
+└── server.js
+
+
+
+### Test Using Postman
+
+| Route        | Method | Header                              | Expected Response            | Status           |
+| ------------ | ------ | ----------------------------------- | ---------------------------- | ---------------- |
+| `/public`    | GET    | None                                | This is a public route.      | 200 OK           |
+| `/protected` | GET    | None                                | Authorization header missing | 401 Unauthorized |
+| `/protected` | GET    | Authorization: Bearer mysecrettoken | Access granted message       | 200 OK           |
+
+
+
+## Terminal Output:
+
+✅ Server running on http://localhost:3000
+[2025-10-09T13:33:52.854Z] GET /public
+GET /public 200 51 - 80.451 ms
+[2025-10-09T13:34:17.564Z] GET /protected
+❌ Access Denied: Missing Authorization header
+GET /protected 401 55 - 3.966 ms
+[2025-10-09T13:35:23.014Z] GET /protected
+✅ Access Granted: Valid token
+GET /protected 200 62 - 2.535 ms
+
+
+###  Postman Results
+
+1. **/public** → Success (200 OK)
+2. **/protected (no token)** → Unauthorized (401)
+3. **/protected (with token)** → Success (200 OK)
+
+
+## Learning Outcomes
+
+* Understand the **concept and flow** of middleware in Express.js.
+* Implement **custom and third-party middleware** effectively.
+* Use **Bearer Token Authentication** for route protection.
+* Differentiate between **application-level and route-level middleware**.
+* Apply **logging techniques** for debugging and request tracing.
+
+
+## 🏁 **Conclusion**
+This experiment successfully demonstrated how to:
+
+* Create and use **Express.js middleware** for logging and authentication.
+* Secure API routes using **Bearer Token validation**.
+* Log requests and responses efficiently for monitoring purposes.
