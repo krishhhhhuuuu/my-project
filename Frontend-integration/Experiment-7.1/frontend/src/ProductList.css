@@ -1,0 +1,56 @@
+body {
+  background-color: #1c1c1c;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.product-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #2e2e2e;
+  border: 1px solid #555;
+  border-radius: 10px;
+  padding: 20px;
+  width: 200px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.message {
+  background-color: #222;
+  color: #00ff99;
+  padding: 10px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 20px;
+}

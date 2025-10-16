@@ -1,0 +1,100 @@
+Experiment 7.3 — Real-Time Chat Application Using WebSocket (Socket.io) and Axios
+
+## Objective
+
+To develop a **real-time chat application** using **WebSocket connections** with the help of **Socket.io** in a **Node.js backend** and **React frontend**.
+This experiment demonstrates how to:
+
+* Establish two-way communication between server and clients.
+* Broadcast messages to all connected users instantly.
+* Build a simple chat interface that updates in real time without page refresh.
+
+
+## Project Structure
+
+Experiment-7.3/
+├── backend/
+│   ├── server.js
+│   ├── package.json
+│   └── node_modules/
+│
+└── frontend/
+    ├── src/
+    │   ├── App.js
+    │   ├── App.css
+    │   ├── Chat.js
+    │   ├── index.js
+    │   └── index.css
+    ├── package.json
+    └── node_modules/
+
+
+
+## Technologies Used
+
+| Category     | Technology       | Purpose                                                                   |
+| ------------ | ---------------- | ------------------------------------------------------------------------- |
+|   Backend    | Node.js          | JavaScript runtime for building the server.                               |
+|              | Express.js       | Simplifies HTTP server creation and routing.                              |
+|              | Socket.io        | Enables real-time bidirectional communication between server and clients. |
+|              | Axios            | Demonstrates API calling capability (optional).                           |
+|   Frontend   | React.js         | Builds dynamic and responsive user interfaces.                            |
+|              | Socket.io-client | Connects the frontend to the backend WebSocket server.                    |
+|              | HTML/CSS         | Used for UI design and layout.                                            |
+
+---
+
+## Working Description
+
+1. Backend (server.js)
+
+   * Sets up an Express server and integrates **Socket.io**.
+   * Listens for WebSocket connections from clients.
+   * Stores and broadcasts messages to all connected users.
+   * Uses Axios for demonstrating external API integration.
+
+2. Frontend (React App)
+
+   * Connects to the backend WebSocket using **socket.io-client**.
+   * Lets users enter their name and send messages.
+   * Displays all messages in real-time using React state updates.
+   * Updates instantly without page reload.
+
+
+## Flow of Execution
+
+1. The user opens the chat interface and enters a username.
+2. On sending a message, the message is emitted to the backend via **Socket.io**.
+3. The backend receives and broadcasts the message to all connected clients.
+4. All clients instantly display the new message in the chat window.
+
+
+## Learning Outcomes
+
+* Understanding WebSocket connections and how they differ from HTTP requests.
+* Implementing two-way, real-time data exchange using **Socket.io**.
+* Integrating a **React frontend** with a **Node.js backend**.
+* Managing live chat updates using React states and Socket events.
+
+
+## Commands Used
+
+### Backend Setup:
+
+cd backend
+npm init -y
+npm install express socket.io cors axios
+node server.js
+
+### Frontend Setup:
+
+cd frontend
+npx create-react-app .
+npm install socket.io-client axios
+npm start
+
+---
+
+## Result
+
+✅ A real-time chat application where multiple users (opened in different browser windows) can send and receive messages instantly — demonstrating successful WebSocket-based communication using Socket.io.

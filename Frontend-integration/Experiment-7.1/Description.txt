@@ -1,0 +1,138 @@
+# **Experiment 7.1 — Connecting React Frontend to Express API Using Axios**
+
+## Objective
+
+To learn how to connect a **React frontend application** to a **Node.js (Express.js) backend API** using **Axios** for fetching data.
+This experiment also demonstrates user interaction by showing a **popup message** when a “Buy” button is clicked, helping understand how to handle UI events in React.
+
+
+## Project Structure
+
+Experiment-7.1/
+├── backend/
+│   ├── node_modules/
+│   ├── package.json
+│   ├── package-lock.json
+│   └── server.js
+│
+└── frontend/
+    ├── node_modules/
+    ├── public/
+    ├── package.json
+    ├── package-lock.json
+    ├── .gitignore
+    ├── README.md
+    └── src/
+        ├── App.js
+        ├── index.js
+        ├── index.css
+        ├── ProductList.css
+        ├── ProductList.js
+    
+
+
+## Technologies Used
+
+| Category        | Technology            | Purpose                                           |
+| --------------- | --------------------- | ------------------------------------------------- |
+|   Backend       | Node.js               | Runtime environment for server-side code.         |
+|                 | Express.js            | Used to build REST API endpoints.                 |
+|   Frontend      | React.js              | Library for building interactive user interfaces. |
+|                 | Axios                 | For making HTTP requests to backend API.          |
+|   Other Tools   | HTML, CSS, JavaScript | For basic UI and styling.                         |
+
+---
+
+## Backend Description (Express API)
+
+* A simple **Express.js server** (`server.js`) is created.
+* It defines a route `/api/products` that returns a JSON array of products:
+
+  ```json
+  [
+    { "id": 1, "name": "Laptop", "price": 55000 },
+    { "id": 2, "name": "Headphones", "price": 3000 },
+    { "id": 3, "name": "Keyboard", "price": 1500 }
+  ]
+  ```
+* The server listens on port **5000**.
+* **CORS** is enabled so that the React frontend can fetch data from a different port.
+
+---
+
+## Frontend Description (React + Axios)
+
+* The React app fetches product data from `http://localhost:5000/api/products` using **Axios** when the component mounts.
+* The fetched data is displayed in a list/table format showing:
+
+  * Product Name
+  * Product Price
+  * A **Buy** button for each product.
+* Clicking the **Buy** button triggers a popup (alert) message confirming the selected product.
+
+### Example:
+
+| Product    | Price   | Action |
+| ---------- | ------- | ------ |
+| Laptop     | ₹55,000 | [Buy]  |
+| Headphones | ₹3,000  | [Buy]  |
+| Keyboard   | ₹1,500  | [Buy]  |
+
+When the user clicks **Buy**, a popup appears:
+
+> “You bought Laptop for $1200”
+
+---
+
+## Flow of Execution
+
+1. **Start Backend:**
+   Run `node server.js` to start the Express API on port 5000.
+
+2. **Start Frontend:**
+   Run `npm start` to start the React app on port 3000.
+
+3. **Axios Request:**
+   The React component sends a GET request to the API endpoint.
+
+4. **Display Products:**
+   Product data is rendered dynamically in a styled list.
+
+5. **Buy Button Popup:**
+   When a user clicks “Buy,” an alert box confirms their selection.
+
+
+## Learning Outcomes
+
+* How to integrate React frontend with Express backend using **Axios**.
+* Managing component lifecycle with **useEffect()**.
+* Handling asynchronous data fetching and UI updates.
+* Managing user interaction and event handling in React (Buy button with popup).
+* Understanding data flow in a full-stack environment.
+
+---
+
+## Commands Used
+
+### Backend:
+
+```bash
+cd backend
+npm init -y
+npm install express cors
+node server.js
+```
+
+### Frontend:
+
+```bash
+cd frontend
+npx create-react-app .
+npm install axios
+npm start
+```
+
+
+## Result
+
+The React application successfully fetched product data from the Express API using Axios, displayed the products dynamically, and showed a **popup confirmation** when the “Buy” button was clicked — demonstrating complete frontend-backend integration.
