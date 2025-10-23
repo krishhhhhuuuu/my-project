@@ -1,0 +1,165 @@
+# Experiment-8: Login Form with Frontend-Backend Integration in React
+
+### Title
+
+Login Form with Backend Integration and API Communication in React
+
+---
+
+## Objective
+
+To design and implement a functional login form in React.js that:
+
+1. Captures user credentials with proper validation.
+2. Communicates with a Node.js + Express.js backend via POST request.
+3. Displays success or error messages based on server responses.
+4. Tests API functionality using Postman.
+
+---
+
+## Theory
+
+A login form is a key component of any web application for user authentication. This experiment demonstrates:
+
+* React Functional Components & State Management: Using `useState` to manage input fields, loading state, and messages.
+* Form Validation: Ensuring that required fields are filled before submission.
+* Frontend-Backend Integration: Using the `fetch` API to send HTTP POST requests from React to the backend.
+* Backend Authentication: A Node.js + Express server validates credentials and responds with success or failure messages.
+* API Testing: Using Postman to verify backend routes independently from the frontend.
+
+Concepts Covered:
+
+* State management in React
+* Form handling and input validation
+* Asynchronous API calls (`fetch`)
+* JSON-based communication between frontend and backend
+* Testing with Postman
+
+---
+
+## Requirements
+
+* Node.js (LTS version)
+* React.js (`create-react-app`)
+* Express.js
+* Postman for API testing
+* Visual Studio Code
+
+---
+
+## Technologies Used
+
+| Technology | Purpose                                    |
+| ---------- | ------------------------------------------ |
+| React.js   | Frontend framework to build interactive UI |
+| Node.js    | Backend JavaScript runtime                 |
+| Express.js | Backend framework to handle HTTP requests  |
+| fetch API  | Send POST requests from frontend           |
+| Postman    | API testing and validation                 |
+
+---
+
+## Folder Structure
+
+```
+Experiment-17/
+│
+├─ server/
+│  ├─ server.js
+│  └─ package.json
+│
+├─ login-form/
+│  ├─ public/
+│  │  └─ index.html
+│  ├─ src/
+│  │  ├─ LoginForm.jsx
+│  │  ├─ App.jsx
+│  │  ├─ index.css
+│  │  └─ main.jsx
+│  └─ package.json
+└─ README.md
+```
+
+---
+
+## Backend: server.js Example
+
+```js
+const express = require("express");
+const cors = require("cors");
+const app = express();
+const PORT = 5000;
+
+app.use(cors());
+app.use(express.json());
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  if (username === "admin" && password === "1234") {
+    res.json({ success: true, message: "Login Successful!" });
+  } else {
+    res.status(401).json({ success: false, message: "Invalid credentials!" });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+```
+
+---
+
+## Frontend: LoginForm.jsx Snippet
+
+```jsx
+fetch("http://localhost:5000/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ username, password })
+})
+.then(res => res.json())
+.then(data => alert(data.message))
+.catch(err => console.error(err));
+```
+
+---
+
+## Test Using Postman
+
+| Route    | Method | Body (JSON)                                   | Expected Response                                         | Status           |
+| -------- | ------ | --------------------------------------------- | --------------------------------------------------------- | ---------------- |
+| `/login` | POST   | `{ "username": "admin", "password": "1234" }` | `{ "success": true, "message": "Login Successful!" }`     | 200 OK           |
+| `/login` | POST   | `{ "username": "user", "password": "123" }`   | `{ "success": false, "message": "Invalid credentials!" }` | 401 Unauthorized |
+
+---
+
+## Terminal Output
+
+```
+✅ Server running on http://localhost:5000
+POST /login 200 58 - 3.412 ms
+POST /login 401 45 - 2.987 ms
+```
+
+---
+
+## Learning Outcomes
+
+* Build interactive login forms in React with proper validation.
+* Manage form state, loading indicators, and feedback messages using `useState`.
+* Integrate React frontend with Node.js + Express backend using `fetch` API.
+* Implement simple backend authentication and send JSON responses.
+* Test API endpoints independently using Postman.
+* Debug frontend-backend communication effectively.
+
+---
+
+## Conclusion
+
+This experiment successfully demonstrated:
+
+* Creation of a React login form with state management.
+* Frontend-backend integration using HTTP POST requests.
+* Handling success and error responses for authentication.
+* Testing APIs using Postman to validate functionality independently.
