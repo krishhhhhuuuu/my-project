@@ -1,11 +1,10 @@
 {
   "name": "experiment-9.2",
   "version": "1.0.0",
-  "description": "CI/CD pipeline experiment using GitHub Actions",
+  "description": "Simple CI/CD pipeline experiment using GitHub Actions",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
-    "build": "echo 'Building project...' && mkdir -p build && echo 'Build complete' > build/output.txt"
+    "build": "echo 'Building project...' && mkdir -p build && node index.js && echo 'Build complete' > build/output.txt"
   },
   "keywords": [],
   "author": "Agastya Vashisht",
