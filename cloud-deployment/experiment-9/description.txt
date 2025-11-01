@@ -1,0 +1,182 @@
+
+# Experiment-9: Dockerize a React Application with Multi-Stage Build
+
+## Title
+
+Dockerize a React Application with Multi-Stage Build
+
+---
+
+## Objective
+
+To create a production-ready Docker image for a React application using a multi-stage Docker build, reducing image size and separating build dependencies from runtime components.
+
+---
+
+## Theory
+
+Docker is a containerization platform that packages applications and their dependencies into isolated environments called containers.
+When working with front-end frameworks like React, multi-stage builds are used to first build the application (using Node.js) and then serve it using a lightweight web server like Nginx.
+
+### Key Concepts:
+
+1. Multi-Stage Build:
+   Reduces final image size by separating the build and runtime stages.
+2. Node.js Image:
+   Used in the first stage to install dependencies and build static files.
+3. Nginx Image:
+   Used in the second stage to serve the built files efficiently.
+4. .dockerignore File:
+   Helps exclude unnecessary files like `node_modules`, `.git`, and logs from being copied into the Docker image.
+
+---
+
+## Requirements
+
+* Visual Studio Code
+* Node.js (LTS version)
+* Docker Desktop
+* Web browser (for testing)
+
+---
+
+## Technologies Used
+
+| Technology     | Purpose                                |
+| -------------- | -------------------------------------- |
+| Node.js        | Used to build the React application    |
+| React.js       | Frontend JavaScript library            |
+| Docker         | To containerize the React app          |
+| Nginx          | To serve the built React files         |
+| VS Code        | Code editor                            |
+| Docker Desktop | To manage Docker images and containers |
+
+---
+
+## Folder Structure
+
+```
+Experiment-9/
+│
+├── node_modules/
+├── public/
+├── src/
+├── Dockerfile
+├── .dockerignore
+├── package.json
+├── package-lock.json
+├── README.md
+└── Screenshots/
+```
+
+---
+
+## Procedure
+
+1. Create React App
+
+   ```bash
+   npx create-react-app experiment-9
+   cd experiment-9
+   ```
+
+2. Create Dockerfile
+
+   ```dockerfile
+   FROM node:18-alpine AS build
+   WORKDIR /app
+   COPY package*.json ./
+   RUN npm install
+   COPY . .
+   RUN npm run build
+
+   FROM nginx:alpine
+   COPY --from=build /app/build /usr/share/nginx/html
+   EXPOSE 80
+   CMD ["nginx", "-g", "daemon off;"]
+   ```
+
+3. Create .dockerignore File
+
+   ```
+   node_modules
+   build
+   .git
+   .gitignore
+   Dockerfile
+   .dockerignore
+   ```
+
+4. Build Docker Image
+
+   ```bash
+   docker build -t experiment-9 .
+   ```
+
+5. Run Container
+
+   ```bash
+   docker run -p 3000:80 experiment-9
+   ```
+
+6. Access Application
+   Open browser → [http://localhost:3000](http://localhost:3000)
+   The React app should display successfully.
+
+---
+
+## Expected Output
+
+* React application served at [http://localhost:3000](http://localhost:3000) inside a Docker container.
+* Docker image size reduced due to multi-stage build.
+* Clear separation between build and deployment stages.
+
+---
+
+## Screenshots Folder Includes
+
+| File Name               | Description                              |
+| ----------------------- | ---------------------------------------- |
+| `dockerfile_vscode.png` | Dockerfile opened in VS Code             |
+| `docker_build.png`      | Docker image build process               |
+| `docker_container.png`  | Running container in Docker Desktop      |
+| `localhost_output.png`  | React app running in browser             |
+| `folder_structure.png`  | Folder and file structure of the project |
+
+---
+
+## Terminal Output Example
+
+```
+[+] Building 36.4s (12/12) FINISHED
+ => => naming to docker.io/library/experiment-9
+Successfully built and tagged experiment-9:latest
+```
+
+```
+docker run -p 3000:80 experiment-9
+/docker-entrypoint.sh: Configuration complete; ready for start up
+```
+
+App visible at:
+✅ `http://localhost:3000`
+
+---
+
+## Learning Outcomes
+
+* Learned how to build and containerize a React app using Docker.
+* Understood multi-stage builds and their efficiency.
+* Learned how to serve React apps using Nginx.
+* Practiced writing `.dockerignore` to optimize Docker builds.
+* Gained hands-on experience with Docker CLI and Docker Desktop.
+
+---
+
+## 🏁 Conclusion
+
+This experiment successfully demonstrated how to:
+
+* Build a React app using multi-stage Docker build.
+* Serve static files using Nginx in production.
+* Achieve a smaller, optimized Docker image by separating build and runtime environments.
