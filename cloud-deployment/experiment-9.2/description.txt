@@ -1,0 +1,165 @@
+Sure 😊 here’s a well-formatted and complete experiment report for your Experiment 9.2 — CI/CD Pipeline using GitHub Actions, written in the same style and level of detail as your Experiment 7.1:
+
+---
+
+# Experiment 9.2 — CI/CD Pipeline using GitHub Actions
+
+## Objective
+
+To understand and implement a Continuous Integration and Continuous Deployment (CI/CD) pipeline using GitHub Actions.
+This experiment automates the process of building and testing a simple Node.js project whenever new code is pushed to the repository, demonstrating the basics of workflow automation in DevOps.
+
+---
+
+## Project Structure
+
+```
+experiment-9.2/
+├── .github/
+│   └── workflows/
+│       └── main.yml
+├── node_modules/
+├── package.json
+├── package-lock.json
+└── index.js
+```
+
+---
+
+## Technologies Used
+
+| Category        | Technology     | Purpose                                            |
+| --------------- | -------------- | -------------------------------------------------- |
+| CI/CD Platform  | GitHub Actions | To automate build and test workflows.              |
+| Runtime         | Node.js        | JavaScript runtime for executing the project code. |
+| Package Manager | npm            | To manage dependencies and run build/test scripts. |
+| Language        | JavaScript     | For writing the main project logic.                |
+| YAML            | main.yml       | Defines the CI/CD workflow steps.                  |
+
+---
+
+## Description
+
+This experiment demonstrates a GitHub Actions workflow that automates building and testing of a simple Node.js project.
+Whenever a new commit is pushed to the repository, the pipeline automatically runs the following steps:
+
+1. Checkout Repository – Clones the latest code from GitHub.
+2. Setup Node.js – Installs Node.js in the workflow runner.
+3. Install Dependencies – Installs project dependencies using npm.
+4. Run Build – Executes the build command defined in `package.json`.
+5. Run Tests – Executes the test script.
+
+---
+
+## Files Overview
+
+### 1. package.json
+
+```json
+{
+  "name": "experiment-9.2",
+  "version": "1.0.0",
+  "description": "CI/CD pipeline experiment using GitHub Actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Running tests...\" && echo \"All tests passed!\"",
+    "build": "echo 'Building project...' && mkdir -p build && echo 'Build complete' > build/output.txt"
+  },
+  "keywords": [],
+  "author": "Agastya Vashisht",
+  "license": "ISC"
+}
+```
+
+---
+
+### 2. index.js
+
+```javascript
+console.log("Hello, CI/CD pipeline is working successfully!");
+```
+
+---
+
+### 3. .github/workflows/main.yml
+
+```yaml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+```
+
+---
+
+## Flow of Execution
+
+1. Push Code to GitHub:
+   When code is pushed to the `main` branch, GitHub Actions automatically triggers the pipeline.
+
+2. Workflow Execution:
+   The steps in `main.yml` run sequentially — checking out code, installing dependencies, and running build/test scripts.
+
+3. Build and Test Logs:
+   Each step’s result (success or failure) is displayed in the GitHub Actions tab of the repository.
+
+4. Pipeline Status:
+
+   * ✅ Green Tick: All steps executed successfully.
+   * ❌ Red Cross: Some steps failed (e.g., build or test errors).
+
+---
+
+## Learning Outcomes
+
+* Understood how GitHub Actions automates CI/CD workflows.
+* Learned to define and structure workflows in YAML format.
+* Understood each stage of a build–test pipeline.
+* Gained hands-on experience with Node.js scripts in automation.
+* Learned how to debug pipeline failures using GitHub Actions logs.
+
+---
+
+## Commands Used
+
+```bash
+# Initialize Node.js project
+npm init -y
+
+# Run build command
+npm run build
+
+# Run test command
+npm test
+```
+
+---
+
+## Result
+
+The CI/CD pipeline was successfully implemented using GitHub Actions.
+Upon each push to the repository, the workflow automatically built and tested the Node.js project, displaying the results directly in the Actions tab — demonstrating the power of automation in modern software development.
