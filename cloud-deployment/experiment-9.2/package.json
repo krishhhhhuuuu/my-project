@@ -1,12 +1,13 @@
 {
   "name": "experiment-9.2",
   "version": "1.0.0",
-  "description": "",
+  "description": "CI/CD pipeline experiment using GitHub Actions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js",
+    "build": "echo 'Building project...' && mkdir -p build && echo 'Build complete' > build/output.txt"
   },
   "keywords": [],
-  "author": "",
+  "author": "Agastya Vashisht",
   "license": "ISC"
 }
