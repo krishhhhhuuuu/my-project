@@ -1,0 +1,124 @@
+Experiment-10
+
+# 🧾 Project Description — Fine-Grained Role-Based Access Control (RBAC) using MERN Stack
+
+## 🔹 Overview
+
+This project demonstrates the implementation of Fine-Grained Role-Based Access Control (RBAC) using the MERN stack — MongoDB, Express.js, React.js, and Node.js.
+The application manages user permissions and access rights based on assigned roles (Admin, Editor, and Viewer) to ensure secure and structured control over both frontend and backend operations.
+
+Each role is granted specific privileges:
+
+* Admin — Full control: can manage users and posts.
+* Editor — Can create and edit only their own posts.
+* Viewer — Has read-only access.
+
+The project integrates JWT-based authentication, role-aware authorization, and React route protection to create a secure and responsive web application.
+
+---
+
+## 🔹 Objective
+
+To design and implement a secure, full-stack web application that controls access to resources based on user roles and permissions, ensuring that unauthorized users cannot perform restricted actions.
+
+---
+
+## 🔹 Key Features
+
+* User Authentication: Login using JSON Web Tokens (JWT).
+* Role-Based Authorization: Admin, Editor, and Viewer roles with defined permissions.
+* Admin Panel: Admins can view, add, and delete users.
+* Ownership Control: Editors can only update their own content.
+* Frontend UI Guards: React components and routes adapt based on user roles.
+* Secure Passwords: Passwords are hashed using bcrypt.
+* Validation: Input fields validated using `express-validator`.
+* Session Management: Logout clears tokens and prevents unauthorized access.
+
+---
+
+## 🔹 Technologies Used
+
+| Layer                 | Technology         | Purpose                                          |
+| --------------------- | ------------------ | ------------------------------------------------ |
+| Frontend              | React.js           | Component-based UI and role-specific rendering   |
+|                       | React Router DOM   | Navigation and route protection                  |
+|                       | Axios              | Communicates securely with the backend API       |
+|                       | CSS                | Custom styling for UI components                 |
+| Backend               | Node.js            | Runtime environment for server logic             |
+|                       | Express.js         | RESTful API framework                            |
+|                       | MongoDB            | NoSQL database for users and posts               |
+|                       | Mongoose           | ODM for MongoDB schema management                |
+|                       | bcrypt             | Password hashing and verification                |
+|                       | jsonwebtoken (JWT) | Authentication and session management            |
+|                       | express-validator  | Request input validation                         |
+|                       | cors               | Cross-origin access between frontend and backend |
+|                       | dotenv             | Environment variable management                  |
+| Development Tools     | nodemon            | Automatic server restarts during development     |
+|                       | Visual Studio Code | Code editor used for full-stack development      |
+
+---
+
+## 🔹 System Workflow
+
+1. User Login: A user logs in and receives a JWT token stored in localStorage.
+2. Authorization Check: Each API route validates the token and checks user role using middleware.
+3. Frontend Control: React uses `AuthProvider` and `PrivateRoute` to restrict access.
+4. Admin Panel: Admins can manage users (add/delete) and assign roles.
+5. Role Enforcement: Editors can update only their posts; Viewers can only read.
+6. Logout: Clears session and redirects to login securely.
+
+---
+
+## 🔹 Project File Structure
+
+```
+mern-rbac/
+│
+├── backend/
+│   ├── src/
+│   │   ├── config/roles.js
+│   │   ├── middleware/auth.js, rbac.js
+│   │   ├── models/User.js, Post.js
+│   │   ├── routes/auth.js, posts.js, users.js
+│   │   ├── server.js
+│   │   └── seed.js
+│   ├── package.json
+│   └── .env
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/axios.js
+│   │   ├── auth/AuthProvider.jsx, PrivateRoute.jsx
+│   │   ├── components/Navbar.jsx, PostEditor.jsx
+│   │   ├── pages/Login.jsx, Posts.jsx, AdminPanel.jsx
+│   │   ├── App.jsx, index.js, App.css
+│   └── package.json
+│
+└── Description.txt / README.md
+```
+
+---
+
+## 🔹 Results
+
+* The system successfully enforces role-based permissions across all modules.
+* Admins can manage users, while Editors and Viewers operate within their allowed limits.
+* Unauthorized access to routes or actions is blocked at both backend and frontend.
+* The UI adapts dynamically based on logged-in user roles.
+
+---
+
+## 🔹 Learning Outcomes
+
+1. Understood authentication and authorization using JWT.
+2. Implemented fine-grained RBAC with clear role boundaries.
+3. Learned to integrate secure backend logic with frontend access control.
+4. Enhanced skills in full-stack application design using MERN.
+5. Practiced password security, validation, and protected route handling.
+6. Built a complete, real-world style admin system with clean UI.
+
+---
+
+## 🔹 Developed By Team:
+
+👩‍💻 Agastya Vashisht , Keshav Sharma
