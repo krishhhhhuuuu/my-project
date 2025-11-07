@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
 const postsRoutes = require('./routes/posts');
 const usersRoutes = require('./routes/users');
+const auditRoutes = require('./routes/audit');
 const logger = require('./utils/logger');
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:3000', cre
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postsRoutes);
 app.use('/api/users', usersRoutes);
+app.use('/api/audit', auditRoutes);
 
 app.use((err, req, res, next) => {
   logger.error('Unhandled error', { err: err?.stack || err });

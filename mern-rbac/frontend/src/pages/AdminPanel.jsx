@@ -7,6 +7,8 @@ export default function AdminPanel() {
   const { user } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
   const [form, setForm] = useState({ name: '', email: '', password: '', role: 'Viewer' });
+  const [loginEvents, setLoginEvents] = useState([]);
+  const [eventsLoading, setEventsLoading] = useState(true);
 
   async function loadUsers() {
     try {
@@ -20,7 +22,21 @@ export default function AdminPanel() {
 
   useEffect(() => {
     loadUsers();
+    loadLoginEvents();
   }, []);
+
+  async function loadLoginEvents() {
+    setEventsLoading(true);
+    try {
+      const token = localStorage.getItem('accessToken');
+      const res = await api.get('/audit/login-events', { headers: { Authorization: `Bearer ${token}` } });
+      setLoginEvents(res.data);
+    } catch (err) {
+      alert('Failed to load login history');
+    } finally {
+      setEventsLoading(false);
+    }
+  }
 
   async function addUser(e) {
     e.preventDefault();
@@ -122,6 +138,38 @@ export default function AdminPanel() {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* 🔹 Login History Table */}
+      <div className="card" style={{ marginTop: 24 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h3 style={{ marginBottom: 12 }}>Login History</h3>
+          <button onClick={loadLoginEvents} style={{ padding: '6px 12px' }}>Refresh</button>
+        </div>
+        {eventsLoading ? (
+          <p>Loading...</p>
+        ) : loginEvents.length === 0 ? (
+          <p>No login activity recorded yet.</p>
+        ) : (
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ background: '#e2e8f0' }}>
+                <th style={{ padding: 8, textAlign: 'left' }}>Email</th>
+                <th style={{ textAlign: 'left' }}>Login Time</th>
+                <th style={{ textAlign: 'left' }}>IP Address</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loginEvents.map((event) => (
+                <tr key={event.id} style={{ borderTop: '1px solid #ddd' }}>
+                  <td style={{ padding: 8 }}>{event.email}</td>
+                  <td>{new Date(event.loginTime).toLocaleString()}</td>
+                  <td>{event.ip}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

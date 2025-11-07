@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
+const LoginEvent = require('../models/LoginEvent');
+const logger = require('../utils/logger');
 const { roles, defaultRole } = require('../config/roles');
 
 const router = express.Router();
@@ -24,6 +26,29 @@ router.post('/login', [
   if (!ok) return res.status(401).json({ error: 'Invalid credentials' });
 
   const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET, { expiresIn: ACCESS_EXPIRES });
+
+  const forwardFor = req.headers['x-forwarded-for'];
+  const ipFromHeader = Array.isArray(forwardFor)
+    ? forwardFor[0]
+    : typeof forwardFor === 'string'
+      ? forwardFor.split(',')[0].trim()
+      : undefined;
+  const ip = ipFromHeader || req.ip || req.connection?.remoteAddress || 'unknown';
+
+  try {
+    await LoginEvent.create({
+      user: user._id,
+      email: user.email,
+      ip,
+      userAgent: req.headers['user-agent'] || ''
+    });
+  } catch (err) {
+    logger.warn('auth: failed to record login event', {
+      userId: user._id?.toString(),
+      err: err.message
+    });
+  }
+
   res.json({ accessToken: token, user: { id: user._id, name: user.name, role: user.role } });
 });
 
